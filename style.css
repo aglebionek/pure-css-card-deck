@@ -1,0 +1,351 @@
+/*
+The 'card' div is the entire card;
+The 'card__value' span displays card values in the corners;
+The 'card__minisuit' span displays card suit below the values;
+The 'card__mainsuit' span displays big suits in the middle;
+
+To create a card, add suit and value to the 'card' div. For example, to create King of Spades, the 'card' div should also have
+'vK' class and 'spades' class (<div className="card vK spades">);
+A 'card' div without any additional classes will appear as an empty frame;
+To display the back of a card, add 'back' class to the 'card' div (<div className="card back">);
+Available suit classes: 'spades', 'hearts', 'diamonds', 'clubs';
+Available value classes: 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10', 'vJ', 'vQ', 'vK', 'vA';
+To apply cyberpunk look to the cards, add 'cyberpunk' class to the 'card' div (<div className="card vK spades cyberpunk">);
+Order of applying the classes shouldn't matter.
+To change card size, change 'font-size' in .card;
+
+
+If there are any problems with the way cards display, contact @aglebionek.
+*/
+
+
+
+/*---------------------------------------LOOK---------------------------------------*/
+
+/*regular cards look*/
+
+.card {
+    font-size: 1.5em; /* change to resize card */
+    height: 4.45em;
+    width: 3.2em;
+    border: 0.03em solid black;
+    border-radius: 0.1em;
+    position: relative;
+    font-family: Tahoma;
+    color: var(--color);
+    box-shadow: var(--box-shadow);
+    background: var(--bg-color);
+}
+
+
+
+.card__value::before, .card__value::after {
+    position: absolute;
+    font-size: 60%;
+    color: var(--color);
+    text-shadow: var(--text-shadow);
+}
+
+.card__value::before {
+    left: 0.34em;
+    top: 0.1em;
+}
+
+.card__value::after {
+    right: 0.34em;
+    bottom: 0.1em;
+    transform: rotate(180deg);
+}
+
+
+
+.card__minisuit::before, .card__minisuit::after {
+    position: absolute;
+    font-size: 60%;
+    color: var(--color);
+    text-shadow: var(--text-shadow);
+}
+
+.card__minisuit::before {
+    left: 0.36em;
+    top: 0.9em;
+}
+
+.card__minisuit::after {
+    right: 0.36em;
+    bottom: 0.9em;
+    transform: rotate(180deg);
+}
+
+
+
+.card__mainsuit::before, .card__mainsuit::after {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    font-size: calc(250% / 2.75);
+    white-space: pre;
+    position: absolute;
+    text-align: center;
+    color: var(--color);
+    text-shadow: var(--text-shadow);
+    line-height: 0.7em;
+}
+
+.card__mainsuit::before {
+    margin-top: 0.6em;
+}
+
+.card__mainsuit::after {
+    transform: rotate(180deg);
+    margin-top: -0.6em;
+}
+
+/*scale down value for 10 to fit*/
+.card.v10 > .card__value::before, .card.v10 > .card__value::after {
+    letter-spacing: -.08em;
+}
+.card.v10>.card__value::before {
+    left: 0.13em;
+}
+.card.v10>.card__value::after {
+    right: 0.13em;
+}
+
+
+
+/*---------------------------------------COLORS---------------------------------------*/
+.card.cyberpunk {
+    --bg-color: black;
+}
+
+.card {
+    --bg-color: white;
+}
+
+.card.diamonds, .card.hearts {
+    border: 0.03em solid red;
+    --color: red;
+    --box-shadow: none;
+    --text-shadow: none;
+}
+
+.card.clubs, .card.spades {
+    border: 0.03em solid black;
+    --color: black;
+    --box-shadow: none;
+    --text-shadow: none;
+}
+
+.card.cyberpunk.spades, .card.cyberpunk.clubs {
+    border: 0.03em solid rgba(0, 214, 252, 1);
+    --color: rgba(0, 214, 252, 1);
+    --box-shadow: 0px 0px 0.1em rgba(0, 214, 252, 1), 0px 0px 0.1em rgba(0, 214, 252, 1) inset;
+    --text-shadow: 0px 0px 0.2em rgba(0, 214, 252, 1);
+}
+
+.card.cyberpunk.diamonds, .card.cyberpunk.hearts {
+    border: 0.03em solid rgba(57, 255, 20, 1);
+    --color: rgba(57, 255, 20, 1);
+    --box-shadow: 0px 0px 0.1em rgba(57, 255, 20, 1), 0px 0px 0.1em rgba(57, 255, 20, 1) inset;
+    --text-shadow: 0px 0px 0.2em rgba(57, 255, 20, 1);
+}
+
+/*card backs*/
+.card.back {
+    --bg-color: radial-gradient(lightblue 20%, black 60%);
+}
+.card.back.cyberpunk {
+    --bg-color: linear-gradient(180deg, lightblue 0%, black 20%, black 30%, lightblue 50%, black 70%, black 80%, lightblue 100%);
+}
+
+/*---------------------------------------VALUES---------------------------------------*/
+/*display value*/
+.card > .card__value::before, .card > .card__value::after {
+    content: var(--value);
+}
+
+/*values*/
+.card.v2 {
+    --value: "2";
+}
+.card.v3 {
+    --value: "3";
+}
+.card.v4 {
+    --value: "4";
+}
+.card.v5 {
+    --value: "5";
+}
+.card.v6 {
+    --value: "6";
+}
+.card.v7 {
+    --value: "7";
+}
+.card.v8 {
+    --value: "8";
+}
+.card.v9 {
+    --value: "9";
+}
+.card.v10 {
+    --value: "10";
+}
+.card.vJ {
+    --value: "J";
+}
+.card.vQ {
+    --value: "Q";
+}
+.card.vK {
+    --value: "K";
+}
+.card.vA {
+    --value: "A";
+}
+
+
+
+/*---------------------------------------SUITS---------------------------------------*/
+/*suits unicodes*/
+.card.spades {
+    --suit: "\2660";
+}
+.card.clubs {
+    --suit: "\2663";
+}
+.card.hearts {
+    --suit: "\2665";
+}
+.card.diamonds {
+    --suit: "\2666";
+}
+
+
+
+/*apply minisuit*/
+.card > .card__minisuit::before, .card  > .card__minisuit::after {
+    content: var(--suit);
+}
+
+
+
+/*mainsuits patterns*/
+.card.v2 > .card__mainsuit::before {
+    content: var(--suit);
+}
+
+.card.v2 > .card__mainsuit::after {
+    content: var(--suit);
+}
+
+
+
+.card.v3 > .card__mainsuit::before {
+    content: var(--suit) "\A\A" var(--suit);
+}
+
+.card.v3 > .card__mainsuit::after {
+    content: var(--suit);
+}
+
+
+
+.card.v4 > .card__mainsuit::before {
+    content: var(--suit) "\00A0\00A0" var(--suit);
+}
+
+.card.v4 > .card__mainsuit::after {
+    content: var(--suit) "\00A0\00A0" var(--suit);
+}
+
+
+
+.card.v5 > .card__mainsuit::before {
+    content: var(--suit) "\00A0\00A0" var(--suit) "\A\A" var(--suit);
+}
+
+.card.v5 > .card__mainsuit::after {
+    content: var(--suit) "\00A0\00A0" var(--suit);
+}
+
+
+
+.card.v6 > .card__mainsuit::before {
+    content: var(--suit) "\00A0\00A0" var(--suit) "\A\A" var(--suit) "\00A0\00A0" var(--suit);
+}
+
+.card.v6 > .card__mainsuit::after {
+    content: var(--suit) "\00A0\00A0" var(--suit);
+}
+
+
+
+.card.v7 > .card__mainsuit::before {
+    content: var(--suit) "\00A0\00A0" var(--suit) "\A" var(--suit) "\A" var(--suit) "\00A0\00A0" var(--suit);
+}
+
+.card.v7 > .card__mainsuit::after {
+    content: var(--suit) "\00A0\00A0" var(--suit);
+}
+
+
+.card.v8 > .card__mainsuit::before {
+    content: var(--suit) "\00A0\00A0" var(--suit) "\A" var(--suit) "\A" var(--suit) "\00A0\00A0" var(--suit);
+}
+
+.card.v8 > .card__mainsuit::after {
+    content: var(--suit) "\00A0\00A0" var(--suit) "\A" var(--suit);
+}
+
+
+
+.card.v9 > .card__mainsuit::before {
+    content: var(--suit) "\00A0\00A0" var(--suit) "\A\A" var(--suit) "\00A0\00A0" var(--suit) "\A" var(--suit);
+    line-height: 0.5em;
+}
+
+.card.v9>.card__mainsuit::after {
+    content: var(--suit) "\00A0\00A0" var(--suit) "\A\A" var(--suit) "\00A0\00A0" var(--suit);
+    line-height: 0.5em;
+}
+
+
+
+.card.v10 > .card__mainsuit::before {
+    content: var(--suit) "\00A0\00A0" var(--suit) "\A" var(--suit) "\A" var(--suit) "\00A0\00A0" var(--suit);
+    line-height: 0.5em;
+}
+
+.card.v10 > .card__mainsuit::after {
+    content: var(--suit) "\00A0\00A0" var(--suit) "\A" var(--suit) "\A" var(--suit) "\00A0\00A0" var(--suit);
+    line-height: 0.5em;
+}
+
+
+
+.card.vJ > .card__mainsuit::before, .card.vQ > .card__mainsuit::before, .card.vK > .card__mainsuit::before, .card.vA > .card__mainsuit::before {
+    font-size: 250%;
+    margin-top: -.07em;
+    justify-content: center;
+}
+
+.card.vJ > .card__mainsuit::before {
+    content: "\265D";
+}
+
+.card.vQ > .card__mainsuit::before {
+    content: "\265B";
+}
+
+.card.vK > .card__mainsuit::before {
+    content: "\265A";
+}
+
+.card.vA > .card__mainsuit::before {
+    content: var(--suit);
+}
