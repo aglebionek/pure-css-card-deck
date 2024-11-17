@@ -64,4 +64,4 @@ To create a card, add one suit class and one value class to the main div with th
 - The card uses Tahoma font family to make sure all symbols are displayed correctly. WARNING: changing the font-family may cause the cards to not display correctly.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
