@@ -1,4 +1,4 @@
-# Pure HTML/CSS playing cards, with a regular and cyberpunk version!
+# Pure HTML/CSS playing cards, with a regular and a cyberpunk version!
 
 ## Usage
 A single card consists of the following div:
