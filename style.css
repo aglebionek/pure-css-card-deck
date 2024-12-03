@@ -13,14 +13,11 @@ Available value classes: 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10', 
 To apply cyberpunk look to the cards, add 'cyberpunk' class to the 'card' div (<div className="card vK spades cyberpunk">);
 Order of applying the classes shouldn't matter.
 To change card size, change 'font-size' in .card;
-
-
-If there are any problems with the way cards display, contact @aglebionek.
 */
 
 
 
-/*---------------------------------------LOOK---------------------------------------*/
+/*---------------------------------------VIEW---------------------------------------*/
 
 /*regular cards look*/
 
